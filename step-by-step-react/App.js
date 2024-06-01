@@ -1,32 +1,49 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-/***
- * <div id="parent">
- *      <div id="child">
- *          <h1>Im h1 tag</h1>
- *      </div>
- * </div>
- * 
- * 
- * 
- */
-//1st arg - tag
-//2nd arg - attributes
-//3rd arg - "content", which is not but child. so we give array for rendering children
+//Below is react element object
+const heading = React.createElement("h1", {id : "heading-1"}, "Hello React");
+//Render react element such that it becomes html element
 
-//Below code just creates object, return object
-const parent =React.createElement("div",
-                                 { id: "parent"},
-                                  React.createElement("div", {id : "child"},
-                                  [ React.createElement("h1", {key: "k1"}, "I'm an h1 tag"),  React.createElement("h2", { key: "k2"}, "I'm an h2 tag")]))
-                                  //Above code is how we render children
+//JSx heading 
+// Babel in background JSX => React.createElement
+const jsxheading = <h2 id="heading-2">Hello React</h2>
+
+//React Components
+//Class based components - OLD
+//Functional components - NEW
 
 
-// const heading = React.createElement("h1", {
-//     id:"heading",
-//     xyz: "abc"}, "Hello World from React!");
+const Title = () => {
+    return <h1>Title</h1>
+}
+
+//Below 2 are react elements
+const childElem = (<span>Child Element</span>);
+
+const titleReactElem = (<h1>
+    {childElem}
+    Title Elem
+</h1>);
+
+
+const number = 10000;
+//React Functional Component - Function that returns jsx code
+//With curly braces we can execute js inside jsx code
+const HeadingComponent = () => {
+    return <div> 
+            {number}
+            {titleReactElem}
+            <h1>Functional Component</h1>
+            <Title/>
+        </div>
+}
+
+
+
+
+//heading and jsxheading are equivalant here
+//ReactDom takes care of renering render object to html element
 const root = ReactDOM.createRoot(document.getElementById("root"));
-//root.render(heading);
-//This takes care of actually creating tags which browser will understand
-root.render(parent);
+//heading is root element where as HeadingComponent is react component
+root.render([heading, jsxheading, <HeadingComponent/>]);
