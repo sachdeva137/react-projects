@@ -1,3 +1,6 @@
+import React from "react";
+import ReactDOM from "react-dom";
+
 /***
  * <div id="parent">
  *      <div id="child">
@@ -16,13 +19,13 @@
 const parent =React.createElement("div",
                                  { id: "parent"},
                                   React.createElement("div", {id : "child"},
-                                  [ React.createElement("h1", {}, "I'm an h1 tag"),  React.createElement("h2", {}, "I'm an h2 tag")]))
+                                  [ React.createElement("h1", {key: "k1"}, "I'm an h1 tag"),  React.createElement("h2", { key: "k2"}, "I'm an h2 tag")]))
                                   //Above code is how we render children
 
 
-const heading = React.createElement("h1", {
-    id:"heading",
-    xyz: "abc"}, "Hello World from React!");
+// const heading = React.createElement("h1", {
+//     id:"heading",
+//     xyz: "abc"}, "Hello World from React!");
 const root = ReactDOM.createRoot(document.getElementById("root"));
 //root.render(heading);
 //This takes care of actually creating tags which browser will understand
